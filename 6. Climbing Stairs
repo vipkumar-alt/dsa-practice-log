@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int solve(int step,int n,vector<int>&dp){
+        if(step==n)return 1;
+        if(step>n)return 0;
+
+        if(dp[step]!=-1) return dp[step];
+
+        //take 1 step
+        int n1=solve(step+1,n,dp);
+
+        //take 2 steps
+        int n2=solve(step+2,n,dp);
+
+        dp[step]=n1+n2;
+
+        return dp[step];
+    }
+    int climbStairs(int n) {
+
+        vector<int>dp(n+1,-1);
+        int ans=solve(0,n,dp);
+        return ans;
+    }
+};
